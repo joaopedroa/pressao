@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ModalPageComponent } from './modal-page.component';
+import { DadosPage } from './dados.page';
 
-describe('ModalPageComponent', () => {
-  let component: ModalPageComponent;
-  let fixture: ComponentFixture<ModalPageComponent>;
+describe('DadosPage', () => {
+  let component: DadosPage;
+  let fixture: ComponentFixture<DadosPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalPageComponent ],
+      declarations: [ DadosPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ModalPageComponent);
+    fixture = TestBed.createComponent(DadosPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

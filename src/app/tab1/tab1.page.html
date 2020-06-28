@@ -1,56 +1,71 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Olá, Lercio!
+      Olá, Lercio Teotonio Gontijo!
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <form>
-    <ion-list>
-      <ion-list-header lines="inset">
-        <ion-label>Diastólica</ion-label>   
-        <ion-badge color="danger">{{valueD.valorDiastolica}}</ion-badge>     
-      </ion-list-header>
-      <ion-item>
-          <ion-range (ionChange)="getValor($event,'valorDiastolica')"  min="0" max="200" step="1" pin="true" >
-            <ion-icon size="small" slot="start" name="sunny"></ion-icon>
-            <ion-icon slot="end" name="sunny"></ion-icon>
-          </ion-range>
-      </ion-item>
-    </ion-list>
-    <ion-list>
-      <ion-list-header lines="inset">
-        <ion-label>Sistólica</ion-label> 
-        <ion-badge color="danger">{{valueD.valorSistolica}}</ion-badge>
-      </ion-list-header>
-      <ion-item>
-          <ion-range (ionChange)="getValor($event,'valorSistolica')" min="0" max="200" step="1" pin="true" >
-            <ion-icon size="small" slot="start" name="sunny"></ion-icon>
-            <ion-icon slot="end" name="sunny"></ion-icon>
-          </ion-range>
-      </ion-item>
-    </ion-list>
-    <ion-list>
-      <ion-list-header lines="inset">
-        <ion-label>Pulso</ion-label>     
-        <ion-badge color="danger">{{valueD.valorPulso}}</ion-badge>   
-      </ion-list-header>
-      <ion-item>
-          <ion-range (ionChange)="getValor($event,'valorPulso')" min="0" max="200" step="1" pin="true" >
-            <ion-icon size="small" slot="start" name="sunny"></ion-icon>
-            <ion-icon slot="end" name="sunny"></ion-icon>
-          </ion-range>
-      </ion-item>
-    </ion-list>
-    <ion-list>
-      <ion-item>
-        <ion-label positions="stacked"><ion-text  [color]="!valueD.isDeitado ? 'primary' : 'black'">Sentado</ion-text>/<ion-text  [color]="valueD.isDeitado ? 'primary' : 'black'">Deitado</ion-text></ion-label>
-        <ion-toggle [(ngModel)]="valueD.isDeitado" slot="end" name="blueberry" checked></ion-toggle>
-      </ion-item>     
-    </ion-list>  
-    <ion-button expand="full">Salvar</ion-button>
-  </form>
- 
+<ion-content [fullscreen]="true" >
+  <ion-button expand="full" (click)="presentModal()" style = "margin-top:30px;">Inserir Dados</ion-button>
+  <div style="margin-top:30px;text-align: center;" >
+    <ion-text *ngIf="dados.length == 0 ">Nenhum registro encontrado</ion-text>
+  </div>
+  <ion-grid *ngIf="dados.length > 0 ">
+    <ion-row>
+      <ion-col size="4">
+        <div>
+          Data
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          Diast.
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          Sist.
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          Pulso
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          Posição
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of dados" (click)="excluir(item)">
+      <ion-col size="4">
+        <div>
+          {{item.value.data | date:"dd/MM HH:mm" }}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{item.value.diastolica}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{item.value.sistolica}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{item.value.pulso}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{item.value.posicao}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>
